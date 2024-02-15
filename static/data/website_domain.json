@@ -1,0 +1,111 @@
+{
+    "Shopping.general": [
+        "amazon",
+        "ebay",
+        "target",
+        "instacart"
+    ],
+    "Shopping.department": [
+        "kohls"
+    ],
+    "Shopping.fashion": [
+        "uniqlo",
+        "underarmour"
+    ],
+    "Shopping.digital": [
+        "apple",
+        "newegg"
+    ],
+    "Shopping.auto": [
+        "kbb",
+        "cargurus",
+        "carmax",
+        "tesla"
+    ],
+    "Shopping.speciality": [
+        "ikea",
+        "rei",
+        "cabelas",
+        "gamestop",
+        "menards",
+        "cvs",
+        "bookdepository"
+    ],
+    "Travel.airlines": [
+        "united",
+        "delta",
+        "aa",
+        "qatarairways",
+        "jetblue",
+        "kayak",
+        "ryanair"
+    ],
+    "Travel.general": [
+        "expedia",
+        "booking",
+        "agoda",
+        "travelzoo"
+    ],
+    "Travel.hotel": [
+        "airbnb",
+        "marriott",
+        "koa"
+    ],
+    "Travel.ground": [
+        "amtrak",
+        "thetrainline",
+        "mbta",
+        "new.mta.info",
+        "us.megabus"
+    ],
+    "Travel.car rental": [
+        "enterprise",
+        "rentalcars",
+        "budget"
+    ],
+    "Travel.restaurant": [
+        "yellowpages",
+        "yelp",
+        "resy",
+        "exploretock"
+    ],
+    "Travel.other": [
+        "viator",
+        "sixflags",
+        "nps.gov",
+        "spothero",
+        "parking",
+        "flightaware",
+        "carnival"
+    ],
+    "Entertainment.movie": [
+        "imdb",
+        "rottentomatoes",
+        "tvguide",
+        "amctheatres",
+        "redbox"
+    ],
+    "Entertainment.music": [
+        "ultimate-guitar",
+        "discogs",
+        "soundcloud",
+        "last.fm"
+    ],
+    "Entertainment.sports": [
+        "espn",
+        "foxsports",
+        "nfl",
+        "sports.yahoo"
+    ],
+    "Entertainment.game": [
+        "ign",
+        "store.steampowered",
+        "boardgamegeek"
+    ],
+    "Entertainment.event": [
+        "seatgeek",
+        "eventbrite",
+        "ticketcenter",
+        "nyc"
+    ]
+}
