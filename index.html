@@ -33,9 +33,6 @@
 
     gtag('config', 'G-MZNP3SCQ1V');
 
-
-
-
     </script>
 
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -88,6 +85,15 @@
                     </a>
                     <a class="navbar-item" href="https://dki-lab.github.io/LLM-Planner/">
                         LLM-Planner
+                    </a>
+                    <a class="navbar-item" href="https://mmmu-benchmark.github.io/">
+                        MMMU
+                    </a>
+                    <a class="navbar-item" href="https://tiger-ai-lab.github.io/MAmmoTH/">
+                        MAmmoTH
+                    </a>
+                    <a class="navbar-item" href="https://osu-nlp-group.github.io/TableLlama/">
+                        TableLlama
                     </a>
                 </div>
             </div>
@@ -204,6 +210,26 @@
     </div>
 </section>
 
+<!--<style>-->
+<!--  figure {-->
+<!--    max-width: 30%; /* Limit figure width */-->
+<!--    margin: 20px auto; /* Center the figure and add some margin */-->
+<!--    border: 1px solid #ccc; /* Add a border around the figure */-->
+<!--    padding: 10px; /* Add some spacing around the content */-->
+<!--  }-->
+
+<!--  figcaption {-->
+<!--    color: #666; /* Change the caption text color */-->
+<!--    font-style: italic; /* Make caption text italic */-->
+<!--    text-align: center; /* Center-align the caption text */-->
+<!--  }-->
+<!--</style>-->
+
+<figure style="max-width: 30%; margin: 20px auto; border: 1px solid #ccc; padding: 10px;">
+  <img src="static/images/chatgpt_image.png" alt="A beautiful landscape">
+  <figcaption style="color: #666; font-style: italic; text-align: center;">ChatGPT 3.5 response (as of 02/12/2024) for a flight requirement with single option.</figcaption>
+</figure>
+
 <section class="section">
     <div class="container is-max-widescreen">
         <div class="column is-full-width">
@@ -214,7 +240,7 @@
 
                 <ul>
                     <li><b>Flight Data Collection</b>: We randomly choose a source and destination from the list of the
-                        50 most busiest airports by passenger traffic. We then scrape flights between the source and
+                        50 busiest airports by passenger traffic. We then scrape flights between the source and
                         destination from Google Flights using Selenium Webdriver. The flights are sampled from economy,
                         business, and first class including all other details such as price, layover times, carbon
                         emissions etc.
@@ -229,22 +255,17 @@
                         also generate the negation of the condition.
 
                     </li>
-                    <li><b>LLM Paraphrasing & Human Validation</b>: We substitute the individual primitives (with or
-                        without negation) into the individual sum terms and combine them using another simple rule-based
+                    <li><b>LLM Paraphrasing & Human Validation</b>: We substitute the individual primitives into the individual sum terms and combine them using another simple rule-based
                         template. We then use gpt-4-turbo to rephrase the individual sum terms to make them sound more
                         natural and human-like. Next, we combine the individual sum terms into a product (logical AND).
                         The resulting flight requirement is again rephrased with gpt-4-turbo. We manually verify each
                         generated query to ensure it is consistent with the primitives and make changes wherever
-                        necessary. We divide the flights for each route into sets of 5 - each set containing one route
-                        that matches the user criteria.Thus a user query is often repeated in our dataset, but may have
-                        different flight options.
+                        necessary.
 
                     </li>
                     <li><b>Option Matching</b>: We divide the flights for each route into sets of 5 - each set
-                        containing one route that matches the user criteria.Thus a user query is often repeated in our
+                        containing one route that matches the user criteria. Thus a user query is often repeated in our
                         dataset, but may have different flight options.
-
-                        (i).
                     </li>
                 </ul>
             </div>
@@ -299,9 +320,7 @@
 
             <h2 class="title is-3">Data Explorer</h2>
             <md-block>
-                Below we show the data explorer, which allows you to explore the training data in more detail.
-                You can click `Random Task` to load a random task.
-                Or select a `Domain`, `Website`, and type to search for a task.
+                The data explorer allows you to view a random query from Ground Cocoa along with its corresponding POS Equation and primitives (generated from rule-based templates). Additionally you can specify the number of slots, minterms or both to view a query of a specific type. The (slot, minterm) configuration should be valid and must correspond to one of the columns in the table above.
             </md-block>
             <br>
             <div class="column is-full-wdith interpolation-panel">
@@ -310,95 +329,74 @@
                         <div class="column is-two-thirds is-vcentered">
                             <div class="tabs">
                                 <ul>
-                                    <li class="is-active"><a>User Requirement</a></li>
-                                    <li><a>Raw Trace</a></li>
+                                    <li class="is-active"><a href="#" data-target="recordingPanel">User Requirement</a>
+                                    </li>
+                                    <li><a href="#" data-target="tracePanel">POS Equation</a></li>
+                                    <li><a href="#" data-target="primitivesPanel">Primitives</a></li>
+
                                 </ul>
-                                <script>
-                    var tabs = document.getElementsByClassName('tabs')[0];
-                    var tabLinks = tabs.getElementsByTagName('a');
-                    for (var i = 0; i < tabLinks.length; i++) {
-                      tabLinks[i].addEventListener('click', function (e) {
-                        e.preventDefault();
-                        var tab = e.target;
-                        var tabName = tab.innerHTML;
-                        var recordingPanel = document.getElementById('recordingPanel');
-                        var tracePanel = document.getElementById('tracePanel');
-                        if (tabName == 'Recording') {
-                          recordingPanel.style.setProperty("display", "block");
-                          tracePanel.style.setProperty("display", "none");
-                        } else {
-                          recordingPanel.style.setProperty("display", "none");
-                          tracePanel.style.setProperty("display", "block");
-                        }
-                        tab.parentElement.classList.add('is-active');
-                        for (var j = 0; j < tabLinks.length; j++) {
-                          if (tabLinks[j] != tab) {
-                            tabLinks[j].parentElement.classList.remove('is-active');
-                          }
-                        }
-                      });
-                    }
-
-
-
-
-                                </script>
                             </div>
                             <figure class="media is-1by1" id="recordingPanel">
-                                <video id="recording" controls style="display: none;">
-                                    <source src="" type="video/mp4">
-                                </video>
-                                <div class="column has-text-centered is-vcentered">
-
-<!--                                <div class="column has-text-centered is-vcentered">Select a task to view the recording-->
-                                </div>
+                                <!-- Content for User Requirement tab -->
+                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a specific type.</div>
                             </figure>
-                            <figure class="image is-1by1" id="tracePanel" style="display: none;">
-                                <iframe class="has-ratio" id="traceViewer" src="./trace/" frameborder="0"
-                                        allowfullscreen
-                                "
-                                onload="hideSidebar()"></iframe>
-                                <script>
-                    function hideSidebar() {
-                      var iframe = document.getElementById('traceViewer');
-                      var elements = iframe.contentWindow.document.getElementsByClassName('split-view-sidebar');
-                      elements[0].style.setProperty("flex-basis", "170px");
-                      elements[1].style.setProperty("flex-basis", "0px");
-                      var header = iframe.contentWindow.document.getElementsByClassName('header')[0];
-                      header.style.setProperty("display", "none");
-                    }
 
+                            <figure class="media is-1by1" id="tracePanel" style="display: none;">
+                                <!-- Content for Raw Trace tab -->
+                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a specific type.</div>
+                            </figure>
 
-
-
-                                </script>
+                            <figure class="media is-1by1" id="primitivesPanel" style="display: none;">
+                                <!-- Content for Primitives tab -->
+                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a specific type.</div>
                             </figure>
                         </div>
+                        <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        var tabs = document.getElementsByClassName('tabs')[0];
+                                        var tabLinks = tabs.getElementsByTagName('a');
+                                        for (var i = 0; i < tabLinks.length; i++) {
+                                            tabLinks[i].addEventListener('click', function (e) {
+                                                e.preventDefault();
+                                                var targetPanel = this.getAttribute('data-target');
+
+                                                // Toggle active class on tabs
+                                                var li = this.parentNode;
+                                                var allLis = tabs.querySelectorAll('li');
+                                                for (var j = 0; j < allLis.length; j++) {
+                                                    allLis[j].classList.remove('is-active');
+                                                }
+                                                li.classList.add('is-active');
+
+                                                // Show the target panel and hide the other
+                                                var panels = document.querySelectorAll('.media');
+                                                for (var k = 0; k < panels.length; k++) {
+                                                    if (panels[k].id === targetPanel) {
+                                                        panels[k].style.display = 'block';
+                                                    } else {
+                                                        panels[k].style.display = 'none';
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+
+
+
+                        </script>
+                        <!--                    </div>-->
                         <div class="column is-one-third">
-                            <div class="column has-text-centered" style="padding: 20px;">
-                                <button class="button is-dark is-rounded" onclick="randomSelectTask()">Random Task
-                                </button>
-                                <script>
-                    function randomSelectTask() {
-                      displayTask(allTasks);
-                    }
-
-
-
-
-                                </script>
-                            </div>
-                            <h5 class="title is-5">Slots & Minterms</h5>
+                            <h5 class="title is-5 has-text-centered">Slots & Minterms</h5>
                             <div class="columns is-vcentered">
                                 <div class="column is-half has-text-centered">
                                     <div class="select">
                                         <select id="slots">
                                             <option value="">-- Slots --</option>
-                                                <option value="2">-- 2 --</option>
-                                                <option value="3">-- 3 --</option>
-                                                <option value="4">-- 4 --</option>
-                                                <option value="5">-- 5 --</option>
-                                                <option value="6">-- 6 --</option>
+                                            <option value="2">-- 2 --</option>
+                                            <option value="3">-- 3 --</option>
+                                            <option value="4">-- 4 --</option>
+                                            <option value="5">-- 5 --</option>
+                                            <option value="6">-- 6 --</option>
                                         </select>
                                     </div>
                                 </div>
@@ -413,7 +411,19 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="column has-text-centered" style="padding: 20px;">
+                                <button class="button is-dark is-rounded" onclick="randomSelectTask()">Random Query
+                                </button>
+                                <script>
+                                    function randomSelectTask() {
+                                      displayTask(allTasks);
+                                    }
+                                </script>
+                            </div>
+
                             <script>
+
                   let websitePerDomain;
                   let domainForWebsite = {};
 
@@ -474,18 +484,14 @@
                     const selectedWebsite = websiteSelect.value;
                     candidateTasks = allTasks.filter(task => task.website === selectedWebsite);
                   }
-
-
-
-
                             </script>
                             <div class="columns">
                                 <div class="column">
-                                    <h5 class="title is-5">Task</h5>
+                                    <!--                                    <h5 class="title is-5">Task</h5>-->
                                     <div class="dropdown" id="task-dropdown" style="display: inline">
                                         <div class="dropdown-trigger">
-                        <textarea class="textarea" rows="1" oninput="autoResize(this)" id="search-task"
-                                  contenteditable="true"></textarea>
+                                            <!--                        <textarea class="textarea" rows="1" oninput="autoResize(this)" id="search-task"-->
+                                            <!--                                  contenteditable="true"></textarea>-->
                                         </div>
                                         <div class="dropdown-menu" role="menu">
                                             <div class="dropdown-content" id="task-items">
@@ -514,7 +520,6 @@
                         if (slots == "") {
                            slots = Math.floor(Math.random() * 5) + 2;
                         }
-                        console.log(slots);
 
                         var mintermSelect = document.getElementById('minterms');
                         var minterms = mintermSelect.options[mintermSelect.selectedIndex].value;
@@ -526,26 +531,54 @@
                                 minterms = 2;
                            }
                         }
-                        console.log(minterms);
 
-                        var task = allTasks[Math.floor(Math.random() * allTasks.length)];
+                        if (slots != 4 && minterms  == 3) {
 
-                        var selectedSlots = task.slots;
-                        var selectedMinterms = task.minterms;
+                            var error_msg = "Invalid combination of slots and minterms. Please choose minterms=3 only when slots=4.";
 
+                            var recording_window = document.getElementById('recordingPanel');
+                            recording_window.querySelector('div').innerHTML = error_msg;
 
-                        while (selectedSlots != slots || selectedMinterms != minterms) {
-                            task = allTasks[Math.floor(Math.random() * allTasks.length)];
-                            selectedSlots = task.slots;
-                            selectedMinterms = task.minterms;
+                            var trace_window = document.getElementById('tracePanel');
+                            trace_window.querySelector('div').innerHTML = error_msg;
+
+                            var primitives_window = document.getElementById('primitivesPanel');
+                            primitives_window.querySelector('div').innerHTML = error_msg;
                         }
-                        console.log(task);
-                        var question = task.query;
+                        else {
+
+                            var task = allTasks[Math.floor(Math.random() * allTasks.length)];
+
+                            var selectedSlots = task.slots;
+                            var selectedMinterms = task.minterms;
 
 
-                        var recording_window = document.getElementById('recordingPanel');
+                            while (selectedSlots != slots || selectedMinterms != minterms) {
+                                task = allTasks[Math.floor(Math.random() * allTasks.length)];
+                                selectedSlots = task.slots;
+                                selectedMinterms = task.minterms;
+                            }
+                            var question = task.query;
+                            var pos = task.query_fol;
+                            var templates = task.templates;
 
-                        recording_window.querySelector('div').innerHTML = question;
+                            primitive_string = "";
+                            for (let i = 0; i < templates.length; i++) {
+                                var one_set = templates[i];
+                                for (let j = 0; j < one_set.length; j++) {
+                                    primitive_string = primitive_string + "\n" + one_set[j];
+                                }
+                            }
+
+                            var recording_window = document.getElementById('recordingPanel');
+                            recording_window.querySelector('div').innerHTML = question;
+
+                            var trace_window = document.getElementById('tracePanel');
+                            trace_window.querySelector('div').innerHTML = pos;
+
+                            var primitives_window = document.getElementById('primitivesPanel');
+                            primitives_window.querySelector('div').innerHTML = `<pre>${primitive_string}</pre>`;
+                        }
                       }
 
                       function search_task() {
@@ -597,6 +630,10 @@
 
 
 
+
+
+
+
                                     </script>
                                     <br>
                                     <div class="content" id="task-info" style="overflow-y:scroll; max-height: 400px">
@@ -611,104 +648,6 @@
         </div>
     </div>
     <br>
-    <!--    <div class="container is-max-widescreen">-->
-    <!--        <h2 class="title">Related Work</h2>-->
-    <!--        <div class="column">-->
-    <!--            <md-block class="content">-->
-    <!--                Our work is inspired by many existing works, including:-->
-
-    <!--                - `MiniWoB`, `MiniWoB++`, `RUSS` and `WebShop` that focus on task automation in web environments.-->
-    <!--                <ul>-->
-    <!--                    <li>Tianlin Shi, Andrej Karpathy, Linxi Fan, Jonathan Hernandez, and Percy Liang. World of Bits:-->
-    <!--                        An Open-Domain-->
-    <!--                        Platform for Web-Based Agents. ICML 2017.-->
-    <!--                    </li>-->
-    <!--                    <li>Evan Zheran Liu*, Kelvin Guu*, Panupong Pasupat*, Tianlin Shi, Percy Liang. Reinforcement-->
-    <!--                        Learning-->
-    <!--                        on Web-->
-    <!--                        Interfaces using Workflow-Guided Exploration. ICLR 2018.-->
-    <!--                    </li>-->
-    <!--                    <li>Nancy Xu, Sam Masling, Michael Du, Giovanni Campagna, Larry Heck, James Landay, and Monica S.-->
-    <!--                        Lam.-->
-    <!--                        Grounding-->
-    <!--                        open-domain instructions to automate web support tasks. arXiv preprint arXiv:2103.16057 (2021).-->
-    <!--                    </li>-->
-    <!--                    <li>Shunyu Yao, Howard Chen, John Yang, and Karthik Narasimhan. WebShop: Towards Scalable Real-World-->
-    <!--                        Web-->
-    <!--                        Interaction with Grounded Language Agents. NeurIPS 2022.-->
-    <!--                    </li>-->
-    <!--                </ul>-->
-    <!--                - `SWDE` and `WebSRC` that focuses on web extraction and QA.-->
-    <!--                <ul>-->
-    <!--                    <li>Qiang Hao, Rui Cai, Yanwei Pang, and Lei Zhang. From One Tree to a Forest: a Uniﬁed Solution for-->
-    <!--                        Structured Web Data-->
-    <!--                        Extraction. SIGIR 2011.-->
-    <!--                    </li>-->
-    <!--                    <li>-->
-    <!--                        Xingyu Chen, Zihan Zhao, Lu Chen, JiaBao Ji, Danyang Zhang, Ao Luo, Yuxuan Xiong, and Kai Yu.-->
-    <!--                        2021.-->
-    <!--                        WebSRC: A Dataset-->
-    <!--                        for Web-Based Structural Reading Comprehension. EMNLP 2021.-->
-    <!--                    </li>-->
-    <!--                </ul>-->
-    <!--                - `PixelHelp`, `META-GUI` and `MoTIF` that focuses on task automation with mobile APPS.-->
-    <!--                <ul>-->
-    <!--                    <li>-->
-    <!--                        Yang Li, Jiacong He, Xin Zhou, Yuan Zhang, and Jason Baldridge. Mapping Natural Language-->
-    <!--                        Instructions to-->
-    <!--                        Mobile UI Action Sequences. ACL 2020.-->
-    <!--                    </li>-->
-    <!--                    <li>Liangtai Sun, Xingyu Chen, Lu Chen, Tianle Dai, Zichen Zhu, and Kai Yu. META-GUI: Towards-->
-    <!--                        Multi-modal-->
-    <!--                        Conversational Agents on Mobile GUI. EMNLP 2022.-->
-    <!--                    </li>-->
-    <!--                    <li>Andrea Burns, Deniz Arsan, Sanjna Agrawal, Ranjitha Kumar, Kate Saenko, and Bryan A. Plummer. A-->
-    <!--                        Dataset for-->
-    <!--                        Interactive Vision-Language Navigation with Unknown Command Feasibility. ECCV 2022.-->
-    <!--                    </li>-->
-    <!--                </ul>-->
-
-    <!--                Concurrent to our project, there are also many efforts on developing web-based agents, in particular-->
-    <!--                with-->
-    <!--                large language models.-->
-    <!--                We hope **Mind2Web** can serve as a standard benchmark and facilitate the development of such systems.-->
-    <!--                - ChatGPT and plugins. https://openai.com/blog/chatgpt-plugins.-->
-    <!--                - ACT-1 from ADEPT. https://www.adept.ai/blog/act-1.-->
-    <!--                - LangChain. https://python.langchain.com/en/latest/index.html.-->
-    <!--                - NatBOT. https://github.com/nat/natbot.-->
-    <!--                - Multion. https://www.multion.ai/.-->
-    <!--                - Auto-GPT. https://github.com/Significant-Gravitas/Auto-GPT-->
-    <!--            </md-block>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--    <br>-->
-
-    <!--    <div class="container is-max-widescreen">-->
-    <!--        <h2 class="title">Disclaimer</h2>-->
-    <!--        <div class="column">-->
-    <!--            This dataset was collected and released solely for research purposes, with the goal of making the web more-->
-    <!--            accessible via language technologies. The authors are strongly against any potential harmful use of the data-->
-    <!--            or-->
-    <!--            technology to any party.-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--    <br>-->
-    <!--    <div class="container is-max-widescreen bibtext-body" id="BibTeX">-->
-    <!--        <h2 class="title">Citation</h2>-->
-    <!--        <div class="column is-10 is-offset-1">-->
-
-    <!--        <pre><code>@misc{deng2023mind2web,-->
-    <!--  title={Mind2Web: Towards a Generalist Agent for the Web},-->
-    <!--  author={Xiang Deng and Yu Gu and Boyuan Zheng and Shijie Chen and Samuel Stevens and Boshi Wang and Huan Sun and Yu Su},-->
-    <!--  year={2023},-->
-    <!--  eprint={2306.06070},-->
-    <!--  archivePrefix={arXiv},-->
-    <!--  primaryClass={cs.CL}-->
-    <!--}</code></pre>-->
-    <!--        </div>-->
-
-    <!--    </div>-->
-    <!--</section>-->
 
     <section class="section">
         <div class="container is-max-widescreen">
