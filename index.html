@@ -33,6 +33,9 @@
 
     gtag('config', 'G-MZNP3SCQ1V');
 
+
+
+
     </script>
 
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -141,7 +144,7 @@
                   </a>
                 </span>
                             <span class="link-block">
-                  <a href="https://github.com/OSU-NLP-Group/Mind2Web"
+                  <a href="https://github.com/OSU-NLP-Group/GroundCocoa"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -191,17 +194,18 @@
                             However, on Saturday, I prefer leaving before 10 in the morning. Also, if I'm travelling at
                             night I need a first class seat."</em></p>
                         <p></p>
-                        The rapid development of large language models (LLMs) has ushered in a transformative era in the
-                        field of Natural Language Processing with models often exceeding human performance on standard
-                        benchmarks. However, the same models also exhibit a tendency to unexpectedly falter in simple
-                        tasks and under seemingly straightforward circumstances. This dichotomy underscores the
-                        necessity of devising challenging benchmarks under unconventional task settings to more
-                        comprehensively assess understanding and reasoning in LLMs. The preceding example of a user
-                        requirement in a flight-booking scenario involves elements of compositional and conditional
-                        reasoning to achieve a successful outcome. Our proposed benchmark seeks to evaluate these
-                        abilities in conjunction in a schema-grounding task presented in multiple-choice format. Results
-                        indicate a significant disparity in performance among current state-of-the-art LLMs with even
-                        the best performing models not exceeding 67% accuracy despite advanced prompting techniques.
+                        The rapid progress of large language models (LLMs) has seen them excel and frequently surpass
+                        human performance on standard benchmarks. This has enabled many downstream applications, such as
+                        LLM agents, to rely on their sophisticated reasoning to navigate complex task requirements.
+                        However, LLMs are known to unexpectedly falter in simple tasks and under seemingly
+                        straightforward circumstances - underscoring the need for better and more diverse evaluation
+                        setups to measure their true capabilities. To this end, we choose to study compositional and
+                        conditional reasoning, two cornerstones of human cognition, and introduce GroundCocoa - a
+                        lexically diverse benchmark connecting these reasoning skills to the real-world problem of
+                        flight booking. Our task involves aligning detailed user preferences with available flight
+                        options presented in a multiple-choice format. Results indicate a significant disparity in
+                        performance among current state-of-the-art LLMs with even the best performing model, GPT-4
+                        Turbo, not exceeding 67% accuracy despite advanced prompting techniques.
                     </md-block>
                 </div>
 
@@ -225,9 +229,11 @@
 <!--  }-->
 <!--</style>-->
 
-<figure style="max-width: 30%; margin: 20px auto; border: 1px solid #ccc; padding: 10px;">
-  <img src="static/images/chatgpt_image.png" alt="A beautiful landscape">
-  <figcaption style="color: #666; font-style: italic; text-align: center;">ChatGPT 3.5 response (as of 02/12/2024) for a flight requirement with single option.</figcaption>
+<figure style="max-width: 50%; margin: 20px auto; border: 1px solid #ccc; padding: 10px;">
+    <img src="static/images/chatgpt_sample.png" alt="A beautiful landscape">
+    <figcaption style="color: #666; font-style: italic; text-align: center;">Gemini-Pro and GPT-4 Turbo responses for a
+        flight requirement with single option and a simplified schema.
+    </figcaption>
 </figure>
 
 <section class="section">
@@ -255,7 +261,8 @@
                         also generate the negation of the condition.
 
                     </li>
-                    <li><b>LLM Paraphrasing & Human Validation</b>: We substitute the individual primitives into the individual sum terms and combine them using another simple rule-based
+                    <li><b>LLM Paraphrasing & Human Validation</b>: We substitute the individual primitives into the
+                        individual sum terms and combine them using another simple rule-based
                         template. We then use gpt-4-turbo to rephrase the individual sum terms to make them sound more
                         natural and human-like. Next, we combine the individual sum terms into a product (logical AND).
                         The resulting flight requirement is again rephrased with gpt-4-turbo. We manually verify each
@@ -268,59 +275,165 @@
                         dataset, but may have different flight options.
                     </li>
                 </ul>
+
+                <p>The process for generating a single query with 2 slots and 2 minterms in illustrated in the image below -</p>
+
+                <figure style="max-width: 90%; margin: 20px auto; border: 1px solid #ccc; padding: 10px;">
+                    <img src="static/images/ground_cocoa_generation.png" alt="A beautiful landscape">
+                    <figcaption style="color: #666; font-style: italic; text-align: center;"> Query Generation in GroundCocoa
+                    </figcaption>
+                </figure>
+
             </div>
             <br>
 
             <h2 class="title is-3">Dataset Statistics</h2>
             <div class="content">
                 <p>Key statistics of GroundCocoa are provided below:</p>
-                <table border="1">
-                    <tr>
-                        <th># Samples</th>
-                        <th># Unique Queries</th>
-                        <th>Vocab Size</th>
-                        <th>Avg Query Length</th>
-                        <th>Avg Context Size</th>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center;">4849</td>
-                        <td style="text-align: center;">728</td>
-                        <td style="text-align: center;">4200</td>
-                        <td style="text-align: center;">95.95</td>
-                        <td style="text-align: center;">1252.27</td>
-                    </tr>
-                </table>
 
-                <p>The complexity as well as context size is largely determined by the number of slots and minterms for
-                    each generated query. We further stratify the average query length by the number of slots and
-                    minterms.</p>
                 <table border="1">
+                    <thead>
                     <tr>
-                        <th>(slots, minterms)</th>
+                        <th rowspan="2">Statistic</th>
+                        <th colspan="6">(slot, minterm) configurations</th>
+                        <th rowspan="2"><strong>Total</strong></th>
+                    </tr>
+                    <tr>
                         <th>(2,2)</th>
                         <th>(3,2)</th>
                         <th>(4,2)</th>
                         <th>(4,3)</th>
                         <th>(5,2)</th>
                         <th>(6,2)</th>
-
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Test Samples</td>
+                        <td style="text-align: center;">1511</td>
+                        <td style="text-align: center;">1083</td>
+                        <td style="text-align: center;">710</td>
+                        <td style="text-align: center;">723</td>
+                        <td style="text-align: center;">451</td>
+                        <td style="text-align: center;">371</td>
+                        <td style="text-align: center;"><strong>4849</strong></td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">Avg. Query Length</td>
+                        <td>Test Unique Queries</td>
+                        <td style="text-align: center;">124</td>
+                        <td style="text-align: center;">136</td>
+                        <td style="text-align: center;">117</td>
+                        <td style="text-align: center;">129</td>
+                        <td style="text-align: center;">121</td>
+                        <td style="text-align: center;">101</td>
+                        <td style="text-align: center;"><strong>728</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Val. Samples</td>
+                        <td style="text-align: center;">17</td>
+                        <td style="text-align: center;">17</td>
+                        <td style="text-align: center;">8</td>
+                        <td style="text-align: center;">5</td>
+                        <td style="text-align: center;">2</td>
+                        <td style="text-align: center;">3</td>
+                        <td style="text-align: center;"><strong>52</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Val. Unique Queries</td>
+                        <td style="text-align: center;">1</td>
+                        <td style="text-align: center;">1</td>
+                        <td style="text-align: center;">1</td>
+                        <td style="text-align: center;">1</td>
+                        <td style="text-align: center;">1</td>
+                        <td style="text-align: center;">1</td>
+                        <td style="text-align: center;"><strong>6</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Avg. Query Length</td>
                         <td style="text-align: center;">65.04</td>
                         <td style="text-align: center;">88.33</td>
                         <td style="text-align: center;">103.88</td>
                         <td style="text-align: center;">119.14</td>
                         <td style="text-align: center;">124.56</td>
                         <td style="text-align: center;">148.87</td>
+                        <td style="text-align: center;"><strong>95.95</strong></td>
                     </tr>
+                    <tr>
+                        <td>Avg. Context Length</td>
+                        <!--                        <td colspan="6"></td>-->
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;"><strong>1252.27</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Vocab Size</td>
+                        <!--                        <td colspan="6"></td>-->
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;">-</td>
+                        <td style="text-align: center;"><strong>4200</strong></td>
+                    </tr>
+                    </tbody>
                 </table>
+
+
+                <!--                <table border="1">-->
+                <!--                    <tr>-->
+                <!--                        <th># Samples</th>-->
+                <!--                        <th># Unique Queries</th>-->
+                <!--                        <th>Vocab Size</th>-->
+                <!--                        <th>Avg Query Length</th>-->
+                <!--                        <th>Avg Context Size</th>-->
+                <!--                    </tr>-->
+                <!--                    <tr>-->
+                <!--                        <td style="text-align: center;">4849</td>-->
+                <!--                        <td style="text-align: center;">728</td>-->
+                <!--                        <td style="text-align: center;">4200</td>-->
+                <!--                        <td style="text-align: center;">95.95</td>-->
+                <!--                        <td style="text-align: center;">1252.27</td>-->
+                <!--                    </tr>-->
+                <!--                </table>-->
+
+                <!--                <p>The complexity as well as context size is largely determined by the number of slots and minterms for-->
+                <!--                    each generated query. We further stratify the average query length by the number of slots and-->
+                <!--                    minterms.</p>-->
+                <!--                <table border="1">-->
+                <!--                    <tr>-->
+                <!--                        <th>(slots, minterms)</th>-->
+                <!--                        <th>(2,2)</th>-->
+                <!--                        <th>(3,2)</th>-->
+                <!--                        <th>(4,2)</th>-->
+                <!--                        <th>(4,3)</th>-->
+                <!--                        <th>(5,2)</th>-->
+                <!--                        <th>(6,2)</th>-->
+
+                <!--                    </tr>-->
+                <!--                    <tr>-->
+                <!--                        <td style="text-align: center;">Avg. Query Length</td>-->
+                <!--                        <td style="text-align: center;">65.04</td>-->
+                <!--                        <td style="text-align: center;">88.33</td>-->
+                <!--                        <td style="text-align: center;">103.88</td>-->
+                <!--                        <td style="text-align: center;">119.14</td>-->
+                <!--                        <td style="text-align: center;">124.56</td>-->
+                <!--                        <td style="text-align: center;">148.87</td>-->
+                <!--                    </tr>-->
+                <!--                </table>-->
             </div>
             <br>
 
             <h2 class="title is-3">Data Explorer</h2>
             <md-block>
-                The data explorer allows you to view a random query from Ground Cocoa along with its corresponding POS Equation and primitives (generated from rule-based templates). Additionally you can specify the number of slots, minterms or both to view a query of a specific type. The (slot, minterm) configuration should be valid and must correspond to one of the columns in the table above.
+                The data explorer allows you to view a random query from Ground Cocoa along with its corresponding POS
+                Equation and primitives (generated from rule-based templates). Additionally you can specify the number
+                of slots, minterms or both to view a query of a specific type. The (slot, minterm) configuration should
+                be valid and must correspond to one of the columns in the table above.
             </md-block>
             <br>
             <div class="column is-full-wdith interpolation-panel">
@@ -338,17 +451,26 @@
                             </div>
                             <figure class="media is-1by1" id="recordingPanel">
                                 <!-- Content for User Requirement tab -->
-                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a specific type.</div>
+                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User
+                                    Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a
+                                    specific type.
+                                </div>
                             </figure>
 
                             <figure class="media is-1by1" id="tracePanel" style="display: none;">
                                 <!-- Content for Raw Trace tab -->
-                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a specific type.</div>
+                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User
+                                    Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a
+                                    specific type.
+                                </div>
                             </figure>
 
                             <figure class="media is-1by1" id="primitivesPanel" style="display: none;">
                                 <!-- Content for Primitives tab -->
-                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a specific type.</div>
+                                <div class="column has-text-centered is-vcentered">Select Random Query to view a User
+                                    Requirement from Ground Cocoa. Define slots, minterms or both to view a query of a
+                                    specific type.
+                                </div>
                             </figure>
                         </div>
                         <script>
@@ -380,6 +502,9 @@
                                             });
                                         }
                                     });
+
+
+
 
 
 
@@ -419,6 +544,9 @@
                                     function randomSelectTask() {
                                       displayTask(allTasks);
                                     }
+
+
+
                                 </script>
                             </div>
 
@@ -484,6 +612,9 @@
                     const selectedWebsite = websiteSelect.value;
                     candidateTasks = allTasks.filter(task => task.website === selectedWebsite);
                   }
+
+
+
                             </script>
                             <div class="columns">
                                 <div class="column">
@@ -626,6 +757,9 @@
                           displayTask(selectedTask);
                         }
                       });
+
+
+
 
 
 
