@@ -4,7 +4,7 @@ This is the original implementation of the dataset generation as outlined in our
 
 Cleared for Takeoff? Compositional & Conditional Reasoning may be the Achilles Heel to (Flight-Booking) Language Agents
 
-This paper is under review at the Conference on Language Modeling (COLM) 2024. The final dataset (both test and validation splits) are provided [here](flight_data/groundcocoa.json) and also can be downloaded from Huggingface! An overview of the query generation process is depicted in the figure below:
+This paper is under review at the Conference on Language Modeling (COLM) 2024. The final dataset (both test and validation splits) are provided [here](flight_data/groundcocoa.json) and also can be downloaded from [Huggingface🤗](https://huggingface.co/datasets/harsh147/GroundCocoa) An overview of the query generation process is depicted in the figure below:
 
 ![Query Generation Process](images/ground_cocoa_generation.png)
 
@@ -51,3 +51,4 @@ We also provide a method to run the entire pipeline, once the individual scripts
 `python run_all.py`
 
 ## Citation
+
