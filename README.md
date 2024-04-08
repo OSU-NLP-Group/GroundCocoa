@@ -52,3 +52,15 @@ We also provide a method to run the entire pipeline, once the individual scripts
 
 ## Citation
 
+If our find this work useful, please cite our paper:
+
+```
+@misc{kohli2024cleared,
+      title={Cleared for Takeoff? Compositional & Conditional Reasoning may be the Achilles Heel to (Flight-Booking) Language Agents}, 
+      author={Harsh Kohli and Huan Sun},
+      year={2024},
+      eprint={2404.04237},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
