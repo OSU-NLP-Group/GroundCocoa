@@ -6,7 +6,7 @@ Cleared for Takeoff? Compositional & Conditional Reasoning may be the Achilles H
 
 This paper is under review at the Conference on Language Modeling (COLM) 2024. The final dataset (both test and validation splits) are provided [here](flight_data/groundcocoa.json) and also can be downloaded from [Huggingface🤗](https://huggingface.co/datasets/harsh147/GroundCocoa) An overview of the query generation process is depicted in the figure below:
 
-![Query Generation Process](images/ground_cocoa_generation.png)
+![Query Generation Process](files/ground_cocoa_generation.png)
 
 ## Dependencies
 
@@ -49,6 +49,12 @@ Flight options corresponding to each route (scraped in the first step) are match
 We also provide a method to run the entire pipeline, once the individual scripts are properly configured:
 
 `python run_all.py`
+
+## How to Evaluate
+
+We provide a sample evaluation script which could run evaluation on GroundCocoa and output the accuracy. The method is currently set up to evaluate GPT-4 Turbo. To evaluate a different model, change the get_model_response() method in the file to query a model of your choice with the "final_prompt" input. You can also alter the "prompting_strategy" to prompt with partial or full CoT as described in our paper.
+
+`python run_eval.py`
 
 ## Citation
 
