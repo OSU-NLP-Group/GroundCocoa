@@ -13,7 +13,7 @@ from utils.ioutils import read_from_json, write_to_json
 prompting_strategy = "regular"
 
 # set to True if you wish to download and load the dataset from HuggingFace hub
-load_from_huggingface = False
+load_from_huggingface = True
 
 # Only required when evaluating an OpenAI model
 client = OpenAI(
@@ -78,6 +78,7 @@ for index, test_sample in enumerate(cocoa_dataset):
             end = time.time()
             time_taken = str(end - start)
             print('Time taken ' + time_taken + ' seconds')
+            break
     except Exception as e:
         print('Aborting due to error')
         print(e)
