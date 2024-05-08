@@ -7,7 +7,7 @@ from datetime import date
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-from constants import airport_file
+from constants import airport_file, chrome_path, chromedriver_path
 
 
 def scrape_data(origin, dest, date_leave, date_return, flight_class):
@@ -43,7 +43,11 @@ def get_info(res):
 
 
 def make_url_request(url, flight_class):
-    driver = webdriver.Chrome('chromedriver')
+    options = webdriver.ChromeOptions()
+    options.binary_location = chrome_path
+    cService = webdriver.ChromeService(executable_path=chromedriver_path)
+
+    driver = webdriver.Chrome(service=cService, options=options)
     driver.get(url)
     WebDriverWait(driver, timeout=10).until(lambda d: len(get_flight_elements(d)) > 100)
     driver.maximize_window()

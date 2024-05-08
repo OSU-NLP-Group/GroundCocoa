@@ -6,7 +6,7 @@ from constants import flight_options_file
 from utils.scraping_utils import scrape_data, stitch_together
 from utils.ioutils import get_busiest_airport_codes, write_to_json
 
-date, return_date = '2024-04-17', '2024-04-28'
+date, return_date = '2024-06-17', '2024-06-28'
 
 classes = ['Economy', 'Business', 'First']
 busiest_codes, iata_to_country = get_busiest_airport_codes()

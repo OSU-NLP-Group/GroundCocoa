@@ -8,6 +8,8 @@ conditions_file = 'flight_data/conditions.json'
 data_file = 'flight_data/compositional_dataset.json'
 cocoa_dataset_file = 'flight_data/groundcocoa.json'
 file_dir = 'files'
+chrome_path = 'C://path//to//chrome.exe'
+chromedriver_path = 'C://path//to//chromedriver.exe'
 
 slot_minterm_configs = [(2, 2), (3, 2), (4, 2), (4, 3), (5, 2), (6, 2)]
 

@@ -20,6 +20,8 @@ The individual scripts correspond to various stages of the data creation pipelin
 
 ### Flight Data Scraper
 
+Set the *chrome_path* and *chromedriver_path* in the [constants.py](constants.py) and then run:
+
 `python scrape_flight_data.py`
 
 Source and target airports are randomly selected from the [list of busiest airports](flight_data/busiest_airports.csv) and scrapes flight data separately for each of the three classes - economy, business, and first class. The script requires that you have chromedriver corresponding to your google chrome version downloaded in the main directory of this project.
