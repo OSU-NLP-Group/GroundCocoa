@@ -2,9 +2,11 @@
 
 This is the original implementation of the dataset generation as outlined in our paper -
 
-Cleared for Takeoff? Compositional & Conditional Reasoning may be the Achilles Heel to (Flight-Booking) Language Agents
+[GroundCocoa: A Benchmark for Evaluating Compositional & Conditional Reasoning in Language Models](https://arxiv.org/abs/2404.04237)
 
-This paper is under review at the Conference on Language Modeling (COLM) 2024. The final dataset (both test and validation splits) are provided [here](flight_data/groundcocoa.json) and also can be downloaded from [Huggingface🤗](https://huggingface.co/datasets/harsh147/GroundCocoa) An overview of the query generation process is depicted in the figure below:
+This paper has been accepted at NAACL '25 (main). The final dataset (both test and validation splits) are provided [here](flight_data/groundcocoa.json), and also can be downloaded from [Huggingface🤗](https://huggingface.co/datasets/harsh147/GroundCocoa). GroundCocoa is now also integrated with the [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) for ease of use. 
+
+An overview of the query generation process is depicted in the figure below:
 
 ![Query Generation Process](files/ground_cocoa_generation.png)
 
@@ -58,17 +60,20 @@ We provide a sample evaluation script which could run evaluation on GroundCocoa 
 
 `python run_eval.py`
 
+GroundCocoa has been integrated into [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), the most popular framework for language model evaluation, and will be available there soon!
+
 ## Citation
 
 If our find this work useful, please cite our paper:
 
 ```
-@misc{kohli2024cleared,
-      title={Cleared for Takeoff? Compositional & Conditional Reasoning may be the Achilles Heel to (Flight-Booking) Language Agents}, 
-      author={Harsh Kohli and Huan Sun},
-      year={2024},
+@misc{kohli2025groundcocoabenchmarkevaluatingcompositional,
+      title={GroundCocoa: A Benchmark for Evaluating Compositional & Conditional Reasoning in Language Models}, 
+      author={Harsh Kohli and Sachin Kumar and Huan Sun},
+      year={2025},
       eprint={2404.04237},
       archivePrefix={arXiv},
-      primaryClass={cs.CL}
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2404.04237}, 
 }
 ```
