@@ -27,13 +27,15 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZNP3SCQ1V"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'G-MZNP3SCQ1V');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
+        gtag('js', new Date());
 
+        gtag('config', 'G-MZNP3SCQ1V');
 
 
     </script>
@@ -122,15 +124,15 @@
                     <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://harshkohli.github.io//">Harsh Kohli</a>*,</span>
-                        <span class="author-block">
-                <a href="http://web.cse.ohio-state.edu/~sun.397/">Huan Sun</a>*
+                        <span class="author-block"><a href="https://sites.google.com/view/sachinkumar">Sachin Kumar</a>, <a
+                                href="https://u.osu.edu/ihudas/people/">Huan Sun</a>
               </span>
                     </div>
 
                     <div class="is-size-5 publication-authors">
                         <span class="author-block">The Ohio State University</span>
                     </div>
-                    <i style="font-size: 15px !important;">*Corresponding Authors.</i>
+                    <i style="font-size: 15px !important;">*Corresponding Author.</i>
 
                     <div class="column has-text-centered">
                         <div class="publication-links">
@@ -196,16 +198,16 @@
                         <p></p>
                         The rapid progress of large language models (LLMs) has seen them excel and frequently surpass
                         human performance on standard benchmarks. This has enabled many downstream applications, such as
-                        LLM agents, to rely on their sophisticated reasoning to navigate complex task requirements.
-                        However, LLMs are known to unexpectedly falter in simple tasks and under seemingly
-                        straightforward circumstances - underscoring the need for better and more diverse evaluation
-                        setups to measure their true capabilities. To this end, we choose to study compositional and
-                        conditional reasoning, two cornerstones of human cognition, and introduce GroundCocoa - a
-                        lexically diverse benchmark connecting these reasoning skills to the real-world problem of
-                        flight booking. Our task involves aligning detailed user preferences with available flight
-                        options presented in a multiple-choice format. Results indicate a significant disparity in
-                        performance among current state-of-the-art LLMs with even the best performing model, GPT-4
-                        Turbo, not exceeding 67% accuracy despite advanced prompting techniques.
+                        LLM agents, to rely on their reasoning to address complex task requirements. However, LLMs are
+                        known to unexpectedly falter in simple tasks and under seemingly straightforward circumstances -
+                        underscoring the need for better and more diverse evaluation setups to measure their true
+                        capabilities. To this end, we choose to study compositional and conditional reasoning, two
+                        aspects that are central to human cognition, and introduce GroundCocoa - a lexically diverse
+                        benchmark connecting these reasoning skills to the real-world problem of flight booking. Our
+                        task involves aligning detailed user preferences with available flight options presented in a
+                        multiple-choice format. Results indicate a significant disparity in performance among current
+                        state-of-the-art LLMs with even the best performing model, GPT-4 Turbo, not exceeding 67%
+                        accuracy despite advanced prompting techniques.
                     </md-block>
                 </div>
 
@@ -276,11 +278,13 @@
                     </li>
                 </ul>
 
-                <p>The process for generating a single query with 2 slots and 2 minterms in illustrated in the image below -</p>
+                <p>The process for generating a single query with 2 slots and 2 minterms in illustrated in the image
+                    below -</p>
 
                 <figure style="max-width: 90%; margin: 20px auto; border: 1px solid #ccc; padding: 10px;">
-                    <img src="static/images/ground_cocoa_generation.png" alt="A beautiful landscape">
-                    <figcaption style="color: #666; font-style: italic; text-align: center;"> Query Generation in GroundCocoa
+                    <img src="static/images/ground_cocoa_generation_2.png" alt="A beautiful landscape">
+                    <figcaption style="color: #666; font-style: italic; text-align: center;"> Query Generation in
+                        GroundCocoa
                     </figcaption>
                 </figure>
 
@@ -474,38 +478,34 @@
                             </figure>
                         </div>
                         <script>
-                                    document.addEventListener('DOMContentLoaded', function () {
-                                        var tabs = document.getElementsByClassName('tabs')[0];
-                                        var tabLinks = tabs.getElementsByTagName('a');
-                                        for (var i = 0; i < tabLinks.length; i++) {
-                                            tabLinks[i].addEventListener('click', function (e) {
-                                                e.preventDefault();
-                                                var targetPanel = this.getAttribute('data-target');
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var tabs = document.getElementsByClassName('tabs')[0];
+                                var tabLinks = tabs.getElementsByTagName('a');
+                                for (var i = 0; i < tabLinks.length; i++) {
+                                    tabLinks[i].addEventListener('click', function (e) {
+                                        e.preventDefault();
+                                        var targetPanel = this.getAttribute('data-target');
 
-                                                // Toggle active class on tabs
-                                                var li = this.parentNode;
-                                                var allLis = tabs.querySelectorAll('li');
-                                                for (var j = 0; j < allLis.length; j++) {
-                                                    allLis[j].classList.remove('is-active');
-                                                }
-                                                li.classList.add('is-active');
+                                        // Toggle active class on tabs
+                                        var li = this.parentNode;
+                                        var allLis = tabs.querySelectorAll('li');
+                                        for (var j = 0; j < allLis.length; j++) {
+                                            allLis[j].classList.remove('is-active');
+                                        }
+                                        li.classList.add('is-active');
 
-                                                // Show the target panel and hide the other
-                                                var panels = document.querySelectorAll('.media');
-                                                for (var k = 0; k < panels.length; k++) {
-                                                    if (panels[k].id === targetPanel) {
-                                                        panels[k].style.display = 'block';
-                                                    } else {
-                                                        panels[k].style.display = 'none';
-                                                    }
-                                                }
-                                            });
+                                        // Show the target panel and hide the other
+                                        var panels = document.querySelectorAll('.media');
+                                        for (var k = 0; k < panels.length; k++) {
+                                            if (panels[k].id === targetPanel) {
+                                                panels[k].style.display = 'block';
+                                            } else {
+                                                panels[k].style.display = 'none';
+                                            }
                                         }
                                     });
-
-
-
-
+                                }
+                            });
 
 
                         </script>
@@ -542,9 +542,8 @@
                                 </button>
                                 <script>
                                     function randomSelectTask() {
-                                      displayTask(allTasks);
+                                        displayTask(allTasks);
                                     }
-
 
 
                                 </script>
@@ -552,67 +551,66 @@
 
                             <script>
 
-                  let websitePerDomain;
-                  let domainForWebsite = {};
+                                let websitePerDomain;
+                                let domainForWebsite = {};
 
-                  fetch("./static/data/website_domain.json")
-                    .then(response => response.json())
-                    .then(data => {
-                      websitePerDomain = data;
-                      for (const domain in websitePerDomain) {
-                        const websites = websitePerDomain[domain];
-                        for (const website of websites) {
-                          domainForWebsite[website] = domain;
-                        }
-                      }
-                    })
-                    .catch(error => console.error(error));
+                                fetch("./static/data/website_domain.json")
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        websitePerDomain = data;
+                                        for (const domain in websitePerDomain) {
+                                            const websites = websitePerDomain[domain];
+                                            for (const website of websites) {
+                                                domainForWebsite[website] = domain;
+                                            }
+                                        }
+                                    })
+                                    .catch(error => console.error(error));
 
-                  let allTasks;
-                  fetch("./static/data/cocoa_final.json")
-                    .then(response => response.json())
-                    .then(data => {
-                      allTasks = data;
-                    })
-                    .catch(error => console.error(error));
+                                let allTasks;
+                                fetch("./static/data/cocoa_final.json")
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        allTasks = data;
+                                    })
+                                    .catch(error => console.error(error));
 
-                  let candidateTasks = allTasks;
+                                let candidateTasks = allTasks;
 
-                  function updateWebsites() {
-                    const domainSelect = document.getElementById("domain");
-                    const websiteSelect = document.getElementById("website");
+                                function updateWebsites() {
+                                    const domainSelect = document.getElementById("domain");
+                                    const websiteSelect = document.getElementById("website");
 
-                    // Clear the website select options
-                    websiteSelect.innerHTML = "";
+                                    // Clear the website select options
+                                    websiteSelect.innerHTML = "";
 
-                    // Get the selected domain
-                    const selectedDomain = domainSelect.value;
+                                    // Get the selected domain
+                                    const selectedDomain = domainSelect.value;
 
-                    // Update the website select options based on the selected domain
-                    if (selectedDomain in websitePerDomain) {
-                      const websites = websitePerDomain[selectedDomain];
-                      const option = document.createElement("option");
-                      option.value = "None";
-                      option.text = "-- Website --";
-                      websiteSelect.appendChild(option);
-                      for (let i = 0; i < websites.length; i++) {
-                        const website = websites[i];
-                        const option = document.createElement("option");
-                        option.value = website;
-                        option.text = website;
-                        websiteSelect.appendChild(option);
-                      }
-                    }
-                  }
+                                    // Update the website select options based on the selected domain
+                                    if (selectedDomain in websitePerDomain) {
+                                        const websites = websitePerDomain[selectedDomain];
+                                        const option = document.createElement("option");
+                                        option.value = "None";
+                                        option.text = "-- Website --";
+                                        websiteSelect.appendChild(option);
+                                        for (let i = 0; i < websites.length; i++) {
+                                            const website = websites[i];
+                                            const option = document.createElement("option");
+                                            option.value = website;
+                                            option.text = website;
+                                            websiteSelect.appendChild(option);
+                                        }
+                                    }
+                                }
 
-                  function updateTasks() {
-                    const websiteSelect = document.getElementById("website");
+                                function updateTasks() {
+                                    const websiteSelect = document.getElementById("website");
 
-                    // Get the selected website
-                    const selectedWebsite = websiteSelect.value;
-                    candidateTasks = allTasks.filter(task => task.website === selectedWebsite);
-                  }
-
+                                    // Get the selected website
+                                    const selectedWebsite = websiteSelect.value;
+                                    candidateTasks = allTasks.filter(task => task.website === selectedWebsite);
+                                }
 
 
                             </script>
@@ -630,142 +628,133 @@
                                         </div>
                                     </div>
                                     <script>
-                      var taskOnDisplay = null;
-                      function autoResize(textarea) {
-                        // Reset the height of the textarea
-                        textarea.style.height = "auto";
+                                        var taskOnDisplay = null;
 
-                        // Set the height of the textarea to fit its content
-                        textarea.style.height = textarea.scrollHeight + "px";
-                      }
+                                        function autoResize(textarea) {
+                                            // Reset the height of the textarea
+                                            textarea.style.height = "auto";
 
-
-                      const searchBox = document.getElementById("search-task");
-                      const searchItems = document.getElementById("task-items");
-                      const searchDropdown = document.getElementById("task-dropdown");
-                      let selectedTask = null;
-
-                      function displayTask(allTasks) {
-                        var slotSelect = document.getElementById('slots');
-                        var slots = slotSelect.options[slotSelect.selectedIndex].value;
-                        if (slots == "") {
-                           slots = Math.floor(Math.random() * 5) + 2;
-                        }
-
-                        var mintermSelect = document.getElementById('minterms');
-                        var minterms = mintermSelect.options[mintermSelect.selectedIndex].value;
-
-                        if (minterms == "") {
-                           if (slots == 4) {
-                                minterms = Math.floor(Math.random() * 2) + 2;
-                           } else {
-                                minterms = 2;
-                           }
-                        }
-
-                        if (slots != 4 && minterms  == 3) {
-
-                            var error_msg = "Invalid combination of slots and minterms. Please choose minterms=3 only when slots=4.";
-
-                            var recording_window = document.getElementById('recordingPanel');
-                            recording_window.querySelector('div').innerHTML = error_msg;
-
-                            var trace_window = document.getElementById('tracePanel');
-                            trace_window.querySelector('div').innerHTML = error_msg;
-
-                            var primitives_window = document.getElementById('primitivesPanel');
-                            primitives_window.querySelector('div').innerHTML = error_msg;
-                        }
-                        else {
-
-                            var task = allTasks[Math.floor(Math.random() * allTasks.length)];
-
-                            var selectedSlots = task.slots;
-                            var selectedMinterms = task.minterms;
+                                            // Set the height of the textarea to fit its content
+                                            textarea.style.height = textarea.scrollHeight + "px";
+                                        }
 
 
-                            while (selectedSlots != slots || selectedMinterms != minterms) {
-                                task = allTasks[Math.floor(Math.random() * allTasks.length)];
-                                selectedSlots = task.slots;
-                                selectedMinterms = task.minterms;
-                            }
-                            var question = task.query;
-                            var pos = task.query_fol;
-                            var templates = task.templates;
+                                        const searchBox = document.getElementById("search-task");
+                                        const searchItems = document.getElementById("task-items");
+                                        const searchDropdown = document.getElementById("task-dropdown");
+                                        let selectedTask = null;
 
-                            primitive_string = "";
-                            for (let i = 0; i < templates.length; i++) {
-                                var one_set = templates[i];
-                                for (let j = 0; j < one_set.length; j++) {
-                                    primitive_string = primitive_string + "\n" + one_set[j];
-                                }
-                            }
+                                        function displayTask(allTasks) {
+                                            var slotSelect = document.getElementById('slots');
+                                            var slots = slotSelect.options[slotSelect.selectedIndex].value;
+                                            if (slots == "") {
+                                                slots = Math.floor(Math.random() * 5) + 2;
+                                            }
 
-                            var recording_window = document.getElementById('recordingPanel');
-                            recording_window.querySelector('div').innerHTML = question;
+                                            var mintermSelect = document.getElementById('minterms');
+                                            var minterms = mintermSelect.options[mintermSelect.selectedIndex].value;
 
-                            var trace_window = document.getElementById('tracePanel');
-                            trace_window.querySelector('div').innerHTML = pos;
+                                            if (minterms == "") {
+                                                if (slots == 4) {
+                                                    minterms = Math.floor(Math.random() * 2) + 2;
+                                                } else {
+                                                    minterms = 2;
+                                                }
+                                            }
 
-                            var primitives_window = document.getElementById('primitivesPanel');
-                            primitives_window.querySelector('div').innerHTML = `<pre>${primitive_string}</pre>`;
-                        }
-                      }
+                                            if (slots != 4 && minterms == 3) {
 
-                      function search_task() {
-                        let suggestions = [];
+                                                var error_msg = "Invalid combination of slots and minterms. Please choose minterms=3 only when slots=4.";
 
-                        // Filter items based on search text
-                        const searchText = searchBox.value.toLowerCase();
-                        for (let i = 0; i < candidateTasks.length; i++) {
-                          if (candidateTasks[i].task.toLowerCase().includes(searchText)) {
-                            suggestions.push([i, candidateTasks[i].task]);
-                          }
-                        }
+                                                var recording_window = document.getElementById('recordingPanel');
+                                                recording_window.querySelector('div').innerHTML = error_msg;
 
-                        // Clear the autocomplete dropdown and display suggestions
-                        searchItems.innerHTML = "";
-                        for (let i = 0; i < suggestions.length; i++) {
-                          const suggestion = suggestions[i];
-                          const item = document.createElement("a");
-                          item.innerHTML = suggestion[1];
-                          item.classList.add("dropdown-item");
-                          item.classList.add("autowrap");
-                          item.addEventListener("click", function () {
-                            searchBox.value = suggestion[1];
-                            searchItems.innerHTML = "";
-                            autoResize(searchBox);
-                            selectedTask = candidateTasks[suggestion[0]];
-                          });
-                          searchItems.appendChild(item);
-                        }
+                                                var trace_window = document.getElementById('tracePanel');
+                                                trace_window.querySelector('div').innerHTML = error_msg;
 
-                        // Show the autocomplete dropdown
-                        searchDropdown.classList.add("is-active");
-                      }
+                                                var primitives_window = document.getElementById('primitivesPanel');
+                                                primitives_window.querySelector('div').innerHTML = error_msg;
+                                            } else {
 
-                      searchBox.addEventListener("input", search_task);
-                      searchBox.addEventListener("focus", search_task);
+                                                var task = allTasks[Math.floor(Math.random() * allTasks.length)];
 
-                      // Close the autocomplete dropdown when clicking outside of it
-                      document.addEventListener("click", function (e) {
-                        if (!searchItems.contains(e.target) && !searchBox.contains(e.target)) {
-                          searchItems.mdContent = "";
-                          searchDropdown.classList.remove("is-active");
-                        }
-                        if (selectedTask != null && (taskOnDisplay == null || taskOnDisplay.trace_url != selectedTask.trace_url)) {
-                          displayTask(selectedTask);
-                        }
-                      });
+                                                var selectedSlots = task.slots;
+                                                var selectedMinterms = task.minterms;
 
 
+                                                while (selectedSlots != slots || selectedMinterms != minterms) {
+                                                    task = allTasks[Math.floor(Math.random() * allTasks.length)];
+                                                    selectedSlots = task.slots;
+                                                    selectedMinterms = task.minterms;
+                                                }
+                                                var question = task.query;
+                                                var pos = task.query_fol;
+                                                var templates = task.templates;
 
+                                                primitive_string = "";
+                                                for (let i = 0; i < templates.length; i++) {
+                                                    var one_set = templates[i];
+                                                    for (let j = 0; j < one_set.length; j++) {
+                                                        primitive_string = primitive_string + "\n" + one_set[j];
+                                                    }
+                                                }
 
+                                                var recording_window = document.getElementById('recordingPanel');
+                                                recording_window.querySelector('div').innerHTML = question;
 
+                                                var trace_window = document.getElementById('tracePanel');
+                                                trace_window.querySelector('div').innerHTML = pos;
 
+                                                var primitives_window = document.getElementById('primitivesPanel');
+                                                primitives_window.querySelector('div').innerHTML = `<pre>${primitive_string}</pre>`;
+                                            }
+                                        }
 
+                                        function search_task() {
+                                            let suggestions = [];
 
+                                            // Filter items based on search text
+                                            const searchText = searchBox.value.toLowerCase();
+                                            for (let i = 0; i < candidateTasks.length; i++) {
+                                                if (candidateTasks[i].task.toLowerCase().includes(searchText)) {
+                                                    suggestions.push([i, candidateTasks[i].task]);
+                                                }
+                                            }
 
+                                            // Clear the autocomplete dropdown and display suggestions
+                                            searchItems.innerHTML = "";
+                                            for (let i = 0; i < suggestions.length; i++) {
+                                                const suggestion = suggestions[i];
+                                                const item = document.createElement("a");
+                                                item.innerHTML = suggestion[1];
+                                                item.classList.add("dropdown-item");
+                                                item.classList.add("autowrap");
+                                                item.addEventListener("click", function () {
+                                                    searchBox.value = suggestion[1];
+                                                    searchItems.innerHTML = "";
+                                                    autoResize(searchBox);
+                                                    selectedTask = candidateTasks[suggestion[0]];
+                                                });
+                                                searchItems.appendChild(item);
+                                            }
+
+                                            // Show the autocomplete dropdown
+                                            searchDropdown.classList.add("is-active");
+                                        }
+
+                                        searchBox.addEventListener("input", search_task);
+                                        searchBox.addEventListener("focus", search_task);
+
+                                        // Close the autocomplete dropdown when clicking outside of it
+                                        document.addEventListener("click", function (e) {
+                                            if (!searchItems.contains(e.target) && !searchBox.contains(e.target)) {
+                                                searchItems.mdContent = "";
+                                                searchDropdown.classList.remove("is-active");
+                                            }
+                                            if (selectedTask != null && (taskOnDisplay == null || taskOnDisplay.trace_url != selectedTask.trace_url)) {
+                                                displayTask(selectedTask);
+                                            }
+                                        });
 
 
                                     </script>
@@ -783,26 +772,27 @@
     </div>
     <br>
 
-        <div class="container is-max-widescreen bibtext-body" id="BibTeX">
-      <h2 class="title">Citation</h2>
-      <div class="column is-10 is-offset-1">
+    <div class="container is-max-widescreen bibtext-body" id="BibTeX">
+        <h2 class="title">Citation</h2>
+        <div class="column is-10 is-offset-1">
 
 
-        <pre><code>@misc{kohli2024cleared,
-      title={Cleared for Takeoff? Compositional & Conditional Reasoning may be the Achilles Heel to (Flight-Booking) Language Agents},
-      author={Harsh Kohli and Huan Sun},
-      year={2024},
+        <pre><code>@misc{kohli2025groundcocoabenchmarkevaluatingcompositional,
+      title={GroundCocoa: A Benchmark for Evaluating Compositional & Conditional Reasoning in Language Models},
+      author={Harsh Kohli and Sachin Kumar and Huan Sun},
+      year={2025},
       eprint={2404.04237},
       archivePrefix={arXiv},
-      primaryClass={cs.CL}
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2404.04237},
 }</code></pre>
-      </div>
+        </div>
 
     </div>
 
     <section class="section">
         <div class="container is-max-widescreen">
-            <h2 class="title">Corresponding Authors</h2>
+            <h2 class="title">Corresponding Author</h2>
             <div class="column is-10 is-offset-1">
                 <div class="columns has-text-centered">
                     <div class="column">
@@ -814,16 +804,16 @@
                                 <figcaption>Harsh Kohli</figcaption>
                             </a>
                     </div>
-                    <div class="column">
-                        <figure class="image is-128x128" style="margin-left: auto; margin-right: auto">
-                            <a href="http://web.cse.ohio-state.edu/~sun.397/">
-                                <img class="is-rounded profile"
-                                     src="http://web.cse.ohio-state.edu/~sun.397/huansun2018-2.png">
-                            </a>
-                            <a href="http://web.cse.ohio-state.edu/~sun.397/">
-                                <figcaption>Huan Sun</figcaption>
-                            </a>
-                    </div>
+                    <!--                    <div class="column">-->
+                    <!--                        <figure class="image is-128x128" style="margin-left: auto; margin-right: auto">-->
+                    <!--                            <a href="http://web.cse.ohio-state.edu/~sun.397/">-->
+                    <!--                                <img class="is-rounded profile"-->
+                    <!--                                     src="https://u.osu.edu/ihudas/people/huansun2018-2.png">-->
+                    <!--                            </a>-->
+                    <!--                            <a href="https://u.osu.edu/ihudas/people/">-->
+                    <!--                                <figcaption>Huan Sun</figcaption>-->
+                    <!--                            </a>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -833,7 +823,8 @@
     <footer class="footer">
         <div class="container">
             <div class="content has-text-centered">
-                <a class="icon-link" href="https://github.com/OSU-NLP-Group/GroundCocoa/tree/website" class="external-link" disabled>
+                <a class="icon-link" href="https://github.com/OSU-NLP-Group/GroundCocoa/tree/website"
+                   class="external-link" disabled>
                     <i class="fab fa-github"></i>
                 </a>
             </div>
@@ -846,7 +837,8 @@
                             Commons Attribution-ShareAlike 4.0 International License</a>.
                         </p>
                         <p>
-                            This means you are free to borrow the <a href="https://github.com/OSU-NLP-Group/GroundCocoa/tree/website">source
+                            This means you are free to borrow the <a
+                                href="https://github.com/OSU-NLP-Group/GroundCocoa/tree/website">source
                             code</a> of this website,
                             we just ask that you link back to this page in the footer.
                             The design of this website is based on <a href="https://nerfies.github.io/">NERFies</a> ,<a
